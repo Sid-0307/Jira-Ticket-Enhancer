@@ -1,1 +1,27 @@
-[]
+[
+  {
+    "id": "CLARIFY-49868449",
+    "title": "Stripe payment failures for subscriptions over $500 on mobile Safari (iOS 16+)",
+    "description": "Users attempting to purchase annual subscriptions ($599/year) are experiencing payment failures exclusively on mobile Safari browsers (iOS 16.0 and above). The issue was first reported on Nov 10, 2024, and affects approximately 12% of mobile Safari users based on our analytics.\nCurrent Behavior:\n\nUser selects annual subscription plan ($599)\nEnters payment details in Stripe checkout modal\nClicks \"Pay Now\" button\nModal shows spinning loader for 3-5 seconds\nError message appears: \"Payment failed. Please try again.\" (Error code: card_declined)\nNo charge appears in Stripe dashboard\nUser remains on checkout page",
+    "acceptance_criteria": "\u2713 Annual subscription payments ($500+) complete successfully on mobile Safari iOS 16-17\n\u2713 Payment success rate for mobile Safari matches desktop (>98%)\n\u2713 User receives order confirmation email within 2 minutes of successful payment\n\u2713 Stripe webhook events log \"payment_intent.succeeded\" for mobile Safari transactions",
+    "refined": {
+      "summary": "Fix Stripe payment failures for annual subscriptions ($500+) on mobile Safari (iOS 16+)",
+      "description": "Users attempting to purchase annual subscriptions ($599/year) are consistently experiencing payment failures exclusively on mobile Safari browsers running iOS 16.0 and above. This issue affects approximately 12% of mobile Safari users and was first reported on Nov 10, 2024. The problem manifests as a generic 'Payment failed. Please try again.' error after a brief loading spinner, with no corresponding charge appearing in the Stripe dashboard and a `card_declined` error code returned to the client. This suggests an issue with Payment Intent confirmation specific to these mobile Safari environments, possibly related to 3D Secure authentication flows, browser-specific security policies, or a client-side integration anomaly.\n\n**Environment:** Mobile Safari on iOS 16.0 through 17.x. The affected subscription plan is the annual $599/year option.\n\n**Steps to Reproduce:**\n1.  User navigates to the subscription checkout page on a mobile device running iOS 16+ using Safari.\n2.  User selects the annual subscription plan ($599).\n3.  User proceeds to the payment step and enters credit card details into the Stripe checkout modal.\n4.  User clicks the 'Pay Now' button.\n\n**Current Behavior:**\n*   The checkout modal displays a spinning loader for 3-5 seconds.\n*   An error message appears: \"Payment failed. Please try again.\" (with an underlying error code: `card_declined`).\n*   No charge or successful Payment Intent appears in the Stripe dashboard for these attempts.\n*   The user remains on the checkout page.\n\n**Expected Behavior:**\n*   The payment process completes successfully.\n*   The user is redirected to a confirmation page.\n*   A successful charge/payment intent is recorded in the Stripe dashboard.",
+      "acceptance_criteria": [
+        "Annual subscription payments ($500+) complete successfully on mobile Safari iOS 16-17.",
+        "Payment success rate for mobile Safari matches desktop (>98%).",
+        "User receives an order confirmation email within 2 minutes of successful payment.",
+        "Stripe webhook events log `payment_intent.succeeded` for mobile Safari transactions."
+      ],
+      "developer_interpretation": "This indicates a Payment Intent confirmation failure isolated to iOS 16+ Mobile Safari. The generic `card_declined` error requires deeper investigation. I'll need specific `payment_intent_id`s from failed attempts to get the precise `decline_code` from Stripe's logs, which will be critical for diagnosing if it's a 3D Secure issue, a browser security/privacy blocker, or a server-side confirmation bug. Identifying the exact Stripe integration method (e.g., Stripe Elements or Checkout Sessions) will focus the debugging effort. I'll also check for any client-side console errors or failed network requests specific to these problematic transactions.",
+      "missing": [
+        "Specific `payment_intent_id`s or `charge_id`s from failed transactions for direct lookup in Stripe dashboard.",
+        "Detailed Stripe `decline_code` or `failure_reason` from server logs or Stripe dashboard for failed attempts.",
+        "Exact Stripe integration method (e.g., Stripe Elements, Stripe Checkout Sessions, or custom API calls).",
+        "Client-side console logs and network request details during payment attempt (if available from user reports or reproduction)."
+      ]
+    },
+    "created_at": "2025-11-18T15:06:13.556384",
+    "jira_url": "https://mock-jira.local/browse/C3A560"
+  }
+]

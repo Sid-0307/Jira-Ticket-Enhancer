@@ -272,7 +272,6 @@ export default function Clarifier() {
             <div style={{ fontSize: 18, fontWeight: 700 }}>
               {title || "Untitled ticket"}
             </div>
-            <div className="small">Click “Analyze” for clarifications</div>
           </div>
           <div className="score">{score}/10</div>
         </div>
@@ -332,7 +331,7 @@ export default function Clarifier() {
           </button>
         </div>
 
-        <div style={{ marginTop: 16 }}>
+        <div style={{ marginTop: 32 }}>
           <h4 style={{ margin: 0 }}>Recent created tickets</h4>
           <div className="small">Tickets created via this tool</div>
           <ul>
@@ -363,14 +362,12 @@ export default function Clarifier() {
         >
           <div>
             <div style={{ fontWeight: 700 }}>LLM Assistant</div>
-            <div className="small">Click “Analyze Ticket” to ask questions</div>
           </div>
           <div className="tag">{loading ? "Analyzing..." : "Idle"}</div>
         </div>
 
-        <div style={{ marginBottom: 12 }}>
+        <div style={{ marginTop: 32, marginBottom: 12 }}>
           <div style={{ fontWeight: 600 }}>Detected Questions</div>
-          <div className="small">Answer these in your description</div>
           <div style={{ marginTop: 8 }}>
             {questions.length === 0 && (
               <div className="small">No outstanding questions — good job!</div>
@@ -383,7 +380,7 @@ export default function Clarifier() {
           </div>
         </div>
 
-        <div style={{ marginBottom: 12 }}>
+        <div style={{ marginTop: 32, marginBottom: 12 }}>
           <div style={{ fontWeight: 600 }}>Rewritten Preview</div>
           <div className="preview small">
             {refined &&
@@ -393,17 +390,10 @@ export default function Clarifier() {
           </div>
         </div>
 
-        <div style={{ marginBottom: 12 }}>
+        <div style={{ marginTop: 32, marginBottom: 12 }}>
           <div style={{ fontWeight: 600 }}>Developer interpretation</div>
           <div className="preview small">
             {refined?.developer_interpretation || "..."}
-          </div>
-        </div>
-
-        <div style={{ marginBottom: 6 }}>
-          <div style={{ fontWeight: 600 }}>Ambiguity / Missing Items</div>
-          <div className="small">
-            {refined?.missing ? refined.missing.join(", ") : "—"}
           </div>
         </div>
       </div>
