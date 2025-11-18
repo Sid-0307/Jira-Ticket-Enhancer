@@ -1,8 +1,8 @@
-# Ticket Clarifier v1 - Hackathon-ready prototype
+# JIRA Ticket Enhancer
 
 What you get:
 
-- backend/ : FastAPI backend with optional OpenAI integration (use GEMINI_API_KEY)
+- backend/ : FastAPI backend with optional GEMINI integration (use GEMINI_API_KEY)
 - frontend/: React + TypeScript UI with real-time LLM-assisted ticket writing
 - Real-time debounced analysis, question detection & removal, clarity score, rewrite preview, and create ticket.
 
@@ -14,9 +14,9 @@ pip install -r requirements.txt
 uvicorn main:app --reload
 ```
 
-(Optional) enable OpenAI:
+(Optional) enable GEMINI:
 
-- set OPENAI_API_KEY in backend/.env or environment
+- set GEMINI_API_KEY in backend/.env or environment
 
 Run frontend:
 
