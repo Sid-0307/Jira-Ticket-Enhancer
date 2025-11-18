@@ -1,4 +1,4 @@
-# Ticket Clarifier v1 - Hackathon-ready prototype
+# JIRA Ticket Enhancer
 
 What you get:
 
