@@ -12,7 +12,7 @@ GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
 genai.configure(api_key=GEMINI_API_KEY)
 USE_GEMINI = bool(GEMINI_API_KEY)
 
-app = FastAPI(title="Ticket Clarifier")
+app = FastAPI(title="Jira Ticket Enhancer")
 
 # CORS
 app.add_middleware(

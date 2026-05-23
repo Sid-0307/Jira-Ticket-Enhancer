@@ -1,4 +1,4 @@
-# Ticket Clarifier - Frontend
+# Jira Ticket Enhancer - Frontend
 
 Run:
 ```

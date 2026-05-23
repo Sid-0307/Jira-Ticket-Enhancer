@@ -1,4 +1,4 @@
-# Ticket Clarifier - Backend (FastAPI)
+# Jira Ticket Enhancer - Backend (FastAPI)
 
 Run:
 

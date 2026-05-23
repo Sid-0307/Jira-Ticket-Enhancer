@@ -4,7 +4,7 @@ export default function App() {
   return (
     <div>
       <div className="header">
-        <div className="logo">Ticket Clarifier</div>
+        <div className="logo">Jira Ticket Enhancer</div>
         <div className="small">Real-time LLM-assisted ticket writing</div>
       </div>
       <div className="container">
